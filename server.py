@@ -6,7 +6,6 @@ app = Flask(__name__)
 
 clf = load('calibrated_logistic_regression_classifier.joblib')
 imputed_values = load('imputed_values.joblib')
-imputed_basket = imputed_values['basket']
 imputed_zipcode = imputed_values['zipcode']
 imputed_totalAmount = imputed_values['totalAmount']
 
@@ -42,7 +41,7 @@ def probability(basket, zipCode, totalAmount):
 def transform_data(basket, zipCode, totalAmount):
     if not basket:
         update_failures_list(1, basket_failures)
-        basket = imputed_basket
+        basket = []
     else:
         update_failures_list(0, basket_failures)
 
